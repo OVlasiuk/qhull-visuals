@@ -75,7 +75,7 @@
 (*Clear[PlotThisFile]*)
 (*PlotThisFile[VFPData_]:= Module[{path,VFPFiles},*)
 (*VFPFiles=VFP[VFPData];*)
-(*Graphics3D[ {Thickness[.000001],PointSize[.003],VorGraph[VFPFiles],Black,Map[Point,1.0001*GetVerts[VFPFiles]]},Boxed->False,ViewPoint->{1.3`,-2.4`,2.`}]*)
+(*Graphics3D[ {Thickness[.000001],PointSize[.003],VorGraph[VFPFiles],Black,Map[Point,1.0001*GetVerts[VFPFiles]]},Boxed->False,ViewPoint->{1.3`,-2.4`,2.`},Axes->True,Boxed->False,AxesStyle->Directive[GrayLevel[0],AbsoluteThickness[1.625`]],AxesLabel->{x,y,z}]*)
 (*]*)
 
 
@@ -85,16 +85,15 @@
 
 (* ::Input:: *)
 (*NotebookDirectory[]*)
-(* path = StringJoin[ ParentDirectory[NotebookDirectory[]],"/10_K_qhull_output/"];allFiles = FileNames["*.out",path];*)
+(* path = StringJoin[ ParentDirectory[NotebookDirectory[]],"/qhull output/"];allFiles = FileNames["*.out",path];*)
 
 
 (* ::Input:: *)
-(*paths = Table[ allFiles[[i]], {i, Length[allFiles]-1}];*)
+(*paths = Table[ allFiles[[i]], {i, Length[allFiles]}];*)
 (*ALLFiles= Table[ Import[paths[[i]],"Table"],{i,Length[paths]}];*)
 
 
 (* ::Input:: *)
-(*(*a bit heavy for large configurations*)*)
 (*ll = Table[PlotThisFile[ALLFiles[[i]]],{i,Length[ALLFiles]}];*)
 (*(*la=ListAnimate[ll,AnimationRate\[Rule].5];*)*)
 
@@ -123,8 +122,29 @@
 (*(*Graphics3D[{PointSize\[Rule].001,Map[Point,1.003*GetVerts[VFP[ALLFiles[[3]]]]]}]*)*)
 
 
-(* ::Text:: *)
-(**)
+ALLFiles= Table[ Import[path<>"may23-"<>ToString[i]<>".out","Table"],{i,149}];
+Length[ALLFiles]
+
+
+ClearAll[plotTest]
+plotTest[file_]:= Module[{},
+Graphics3D[{Sphere[{0,0,0},.99]Red,Map[Sphere[#,.1]&,file],},Lighting->"Neutral",Axes->True,Boxed->False,AxesStyle->Directive[GrayLevel[0],AbsoluteThickness[1.625`]], 
+AxesLabel->{x,y,z},ViewPoint->{1.3, -2.4, 2.}]
+]
+
+
+ClearAll[plott]
+plott[file_]:=Module[{},
+Graphics3D[{Sphere[{0,0,0},.99],Table[{RGBColor[i/Length[file],1-i/Length[file],0],Sphere[file[[i]], .06 ]},{i,Length[file]}]
+},Lighting->"Neutral",Axes->True,Boxed->False,AxesStyle->Directive[GrayLevel[0],AbsoluteThickness[1.625`]], 
+AxesLabel->{x,y,z},ViewPoint->{1.3, -2.4, 2.}]
+]
+
+cookies = Table[plott[GetVerts[VFP[ALLFiles[[i]] ]]  ],{i,Length[ALLFiles]} ];
+
+
+ListAnimate[cookies]
+
 
 
 (* ::Subsection::Closed:: *)
