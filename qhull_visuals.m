@@ -1,6 +1,6 @@
 (* ::Package:: *)
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*Routines*)
 
 
@@ -47,7 +47,8 @@
 
 
 (* ::Input:: *)
-(*VorCell[VFPfile_,ptIndex_]:=Module[{VorVerts,theFacets, theEdge},*)
+(*ClearAll[VorCell]*)
+(*VorCell[VFPfile_,ptIndex_]:=Module[{VorVerts,theFacets},*)
 (*theFacets=GetFacets[VFPfile][[GetVertFacets[VFPfile][[ptIndex]]]];*)
 (*Map[CircCenter,Partition[GetVerts[VFPfile][[Flatten[theFacets]]],3] ]]*)
 
@@ -84,18 +85,48 @@
 
 
 (* ::Input:: *)
-(*NotebookDirectory[]*)
-(* path = StringJoin[ ParentDirectory[NotebookDirectory[]],"/qhull output/"];allFiles = FileNames["*.out",path];*)
+(*(*NotebookDirectory[]*)*)
+(* (*path = StringJoin[ ParentDirectory[NotebookDirectory[]],"/qhull_conj_20K/"];*)*)
+(*path = "/home/alex/GDrive/may24test30kConjGrad/";*)
+(*allFiles = FileNames["total*.txt",path];*)
+
+
+(*path = "/home/alex/Recherche/Code/qhull output"; 
+allFiles = FileNames["*.out",path];*)
 
 
 (* ::Input:: *)
-(*paths = Table[ allFiles[[i]], {i, Length[allFiles]}];*)
-(*ALLFiles= Table[ Import[paths[[i]],"Table"],{i,Length[paths]}];*)
+(*(*paths = Table[ allFiles[[i]], {i, Length[allFiles]}];*)*)
+(*(*ALLFiles= Table[ Import[paths[[i]],"Table"],{i,Length[paths]}];*)*)
+(*ALLFiles= Table[ Import[path<>"total"<>ToString[i]<>".txt","Table"],{i,Length[allFiles]}];*)
 
 
 (* ::Input:: *)
-(*ll = Table[PlotThisFile[ALLFiles[[i]]],{i,Length[ALLFiles]}];*)
+(*ll = Table[PlotThisFile[ALLFiles[[i]]],{i,122,Length[ALLFiles]}];*)
+(*Export["30K_2.avi",ll,"FrameRate"->2,ImageSize->1024];*)
+
+
+(* ::Input:: *)
+(*Export["30K.avi",ll,"FrameRate"->2,ImageSize->1024];*)
+(*Export["30K_large.avi",ll,"FrameRate"->2,ImageSize->2048];*)
 (*(*la=ListAnimate[ll,AnimationRate\[Rule].5];*)*)
+
+
+Export["30K_large.avi",ll,"FrameRate"->2,ImageSize->2048];
+
+
+Length[ll]
+
+
+(*p = PlotThisFile[ALLFiles[[-1]]];
+Export["p"<>ToString[-1]<>".png",p,ImageSize->1024]*)
+
+
+(*Export["p"<>ToString[-1]<>".png",p,ImageSize->1024];*)
+
+
+(* ::InheritFromParent:: *)
+(**)
 
 
 (* ::Input:: *)
@@ -122,13 +153,9 @@
 (*(*Graphics3D[{PointSize\[Rule].001,Map[Point,1.003*GetVerts[VFP[ALLFiles[[3]]]]]}]*)*)
 
 
-ALLFiles= Table[ Import[path<>"may23-"<>ToString[i]<>".out","Table"],{i,149}];
-Length[ALLFiles]
-
-
 ClearAll[plotTest]
 plotTest[file_]:= Module[{},
-Graphics3D[{Sphere[{0,0,0},.99]Red,Map[Sphere[#,.1]&,file],},Lighting->"Neutral",Axes->True,Boxed->False,AxesStyle->Directive[GrayLevel[0],AbsoluteThickness[1.625`]], 
+Graphics3D[{(*Sphere[{0,0,0},.99],Red,*)Map[Sphere[#,.02]&,file],},Lighting->"Neutral",Axes->True,Boxed->False,AxesStyle->Directive[GrayLevel[0],AbsoluteThickness[1.625`]], 
 AxesLabel->{x,y,z},ViewPoint->{1.3, -2.4, 2.}]
 ]
 
@@ -147,7 +174,7 @@ ListAnimate[cookies]
 
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*Areas*)
 
 
