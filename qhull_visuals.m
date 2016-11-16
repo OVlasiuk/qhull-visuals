@@ -1,6 +1,6 @@
 (* ::Package:: *)
 
-(* ::Section::Closed:: *)
+(* ::Section:: *)
 (*Routines*)
 
 
@@ -85,72 +85,42 @@
 
 
 (* ::Input:: *)
-(*(*NotebookDirectory[]*)*)
-(* (*path = StringJoin[ ParentDirectory[NotebookDirectory[]],"/qhull_conj_20K/"];*)*)
-(*path = "/home/alex/GDrive/may24test30kConjGrad/";*)
-(*allFiles = FileNames["total*.txt",path];*)
-
-
-(*path = "/home/alex/Recherche/Code/qhull output"; 
-allFiles = FileNames["*.out",path];*)
+(*path = NotebookDirectory[];*)
+(*allFiles = FileNames["*.out",path];*)
 
 
 (* ::Input:: *)
-(*(*paths = Table[ allFiles[[i]], {i, Length[allFiles]}];*)*)
-(*(*ALLFiles= Table[ Import[paths[[i]],"Table"],{i,Length[paths]}];*)*)
-(*ALLFiles= Table[ Import[path<>"total"<>ToString[i]<>".txt","Table"],{i,Length[allFiles]}];*)
+(*paths = Table[ allFiles[[i]], {i, Length[allFiles]}];*)
+(*ALLFiles= Table[ Import[paths[[i]],"Table"],{i,Length[paths]}];*)
+(*(*ALLFiles= Table[ Import[path<>"total"<>ToString[i]<>".txt","Table"],{i,Length[allFiles]}];*)*)
+(*ll = Table[PlotThisFile[ALLFiles[[i]]],{i,1,Length[ALLFiles]}];*)
+
+
+For[i=1,i<= Length[ll],i++,
+Export["sphere"<>ToString[i]<>".pdf",ll[[i]],ImageSize->1024]]
 
 
 (* ::Input:: *)
-(*ll = Table[PlotThisFile[ALLFiles[[i]]],{i,122,Length[ALLFiles]}];*)
-(*Export["30K_2.avi",ll,"FrameRate"->2,ImageSize->1024];*)
+(*SystemOpen["sphere1.pdf"]*)
 
 
 (* ::Input:: *)
-(*Export["30K.avi",ll,"FrameRate"->2,ImageSize->1024];*)
-(*Export["30K_large.avi",ll,"FrameRate"->2,ImageSize->2048];*)
-(*(*la=ListAnimate[ll,AnimationRate\[Rule].5];*)*)
+(*(*Export["30K_2.avi",ll,"FrameRate"->2,ImageSize->1024];*)*)
 
 
-Export["30K_large.avi",ll,"FrameRate"->2,ImageSize->2048];
+(* ::Input:: *)
+(*(*energy=Drop[Import[ParentDirectory[NotebookDirectory[]]<>"/epsFile.txt","Table"][[All,5]],1];*)*)
+(*(*ListPlot[Drop[energy,50],PlotRange->All]*)*)
+(*(*Timing[PlotThisFile[ALLFiles[[-1]]]]*)*)
+(*(*Graphics3D[{PointSize\[Rule].001,Map[Point,1.003*GetVerts[VFP[ALLFiles[[3]]]]]}]*)*)
 
 
-Length[ll]
-
-
-(*p = PlotThisFile[ALLFiles[[-1]]];
-Export["p"<>ToString[-1]<>".png",p,ImageSize->1024]*)
-
-
-(*Export["p"<>ToString[-1]<>".png",p,ImageSize->1024];*)
-
-
-(* ::InheritFromParent:: *)
+(* ::Text:: *)
 (**)
 
 
-(* ::Input:: *)
-(*Export["10K.avi",ll,"FrameRate"->2,ImageSize->1024]*)
-
-
-(* ::Input:: *)
-(*SystemOpen["10K.avi"]*)
-
-
-(* ::Input:: *)
-(*energy=Drop[Import[ParentDirectory[NotebookDirectory[]]<>"/epsFile.txt","Table"][[All,5]],1];*)
-
-
-(* ::Input:: *)
-(*ListPlot[Drop[energy,50],PlotRange->All]*)
-
-
-(* ::Input:: *)
-(*(*Timing[PlotThisFile[ALLFiles[[-1]]]]*)*)
-
-
-(* ::Input:: *)
-(*(*Graphics3D[{PointSize\[Rule].001,Map[Point,1.003*GetVerts[VFP[ALLFiles[[3]]]]]}]*)*)
+(* ::Section:: *)
+(*Charge motion dynamics (to visualize e.g. gradient descent)*)
 
 
 ClearAll[plotTest]
@@ -174,27 +144,26 @@ ListAnimate[cookies]
 
 
 
-(* ::Subsection:: *)
-(*Areas*)
+(* ::Text:: *)
+(**)
+
+
+(* ::Section:: *)
+(*Statistics of the areas of faces of the Voronoi diagram*)
 
 
 (* ::Input:: *)
+(*VFPFiles=VFP[ALLFiles[[-1]]];*)
 (*vor = VorGraph[VFPFiles];*)
-
-
-(* ::Input:: *)
 (*areas=Map[Area[vor[[#,2]]]&,Range[NumVerts[VFPFiles]]];*)
+(*pens=Extract[VorCells[VFPFiles],Position[Length/@VorCells[VFPFiles],5]];*)
+(*hexs=Extract[VorCells[VFPFiles],Position[Length/@VorCells[VFPFiles],6]];*)
+(*heps=Extract[VorCells[VFPFiles],Position[Length/@VorCells[VFPFiles],7]];*)
 
 
 (* ::Input:: *)
 (*meanArea=Mean[areas]*)
 (*varianceArea=Variance[areas]*)
-
-
-(* ::Input:: *)
-(*pens=Extract[VorCells[VFPFiles],Position[Length/@VorCells[VFPFiles],5]];*)
-(*hexs=Extract[VorCells[VFPFiles],Position[Length/@VorCells[VFPFiles],6]];*)
-(*heps=Extract[VorCells[VFPFiles],Position[Length/@VorCells[VFPFiles],7]];*)
 
 
 (* ::Input:: *)
