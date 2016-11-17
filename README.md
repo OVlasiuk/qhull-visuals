@@ -1,7 +1,7 @@
 # qhull-visuals
-Mathematica routine to process qhull output. Designed for the output of the gradient descent method applied to Riesz energy, as in [https://github.com/OVlasiuk/RieszEnergyOptimization].
+Mathematica routine to process qhull output. Designed for the output of the gradient descent method applied to Riesz energy, as in [this repository](https://github.com/OVlasiuk/RieszEnergyOptimization).
 
-Written with Douglas Hardin and Ziqi Young.
+Written with Douglas Hardin and [Ziqi Young](https://github.com/kenyangzq).
 
 Usage:
 
