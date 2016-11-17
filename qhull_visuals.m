@@ -86,7 +86,7 @@
 
 (* ::Input:: *)
 (*path = NotebookDirectory[];*)
-(*allFiles = FileNames["*.out",path];*)
+(*allFiles = FileNames["*.out",pathpath<>"qhull output/"];*)
 
 
 (* ::Input:: *)
@@ -96,6 +96,7 @@
 (*ll = Table[PlotThisFile[ALLFiles[[i]]],{i,1,Length[ALLFiles]}];*)
 
 
+SetDirectory[NotebookDirectory[]]
 For[i=1,i<= Length[ll],i++,
 Export["sphere"<>ToString[i]<>".pdf",ll[[i]],ImageSize->1024]]
 

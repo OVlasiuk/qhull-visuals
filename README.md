@@ -1,11 +1,11 @@
 # qhull-visuals
-Mathematica routine to process qhull output. Designed for the output of the gradient descent method applied to Riesz energy.
+Mathematica routine to process qhull output. Designed for the output of the gradient descent method applied to Riesz energy, as in [https://github.com/OVlasiuk/RieszEnergyOptimization].
 
 Written with Douglas Hardin and Ziqi Young.
 
 Usage:
 
-- place the files with point coordinates in the repository folder
+- place the files with point coordinates and control.inp in the repository folder
 - run qhull_all.sh
 - open and run qhull_visuals.m in Mathematica
 
