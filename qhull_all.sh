@@ -1,5 +1,5 @@
 #!/bin/bash
-USAGE="\e[1mUsage:\e[0m \e[3mqhull_all.sh\e[0m [-r|--riesz] [-i|--input file]\n"
+USAGE="\e[1mUsage:\e[0m\n\e[3mqhull_all.sh\e[0m [-h|--help]\n\e[3mqhull_all.sh\e[0m [-r|--riesz] [-i|--input file]\n\e[3mqhull_all.sh\e[0m [-d|--dimension D] [-n|--numpts N] [-i|--input file]\n"
 OUTPATH='qhull_output'
 [ -d "$OUTPATH" ] || mkdir "$OUTPATH";
 temp=.temp;
